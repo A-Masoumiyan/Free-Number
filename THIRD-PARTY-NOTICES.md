@@ -23,3 +23,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## libphonenumber-js
+
+The offline browser bundle `ui/vendor/phone.js` is copied from the pinned npm dependency's `bundle/libphonenumber-max.js`. License: MIT; see `ui/vendor/phone-LICENSE.txt`. Source: https://github.com/catamphetamine/libphonenumber-js . Rebuild after updating the pinned package and numbering metadata; numbering-plan checks do not verify ownership, reachability, Telegram acceptance, or registration status.
