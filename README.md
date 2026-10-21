@@ -4,7 +4,7 @@
 
 ## دانلود
 
-هر دو فایل نصب در پوشهٔ [free number](free%20number/) قرار دارند:
+هر دو فایل نصب در پوشهٔ [free number](https://github.com/A-Masoumiyan/Free-Number/tree/main/free%20number) قرار دارند:
 
 - Android 8 یا جدیدتر: `Free-Number-0.1.0-Android.apk`
 - Windows 10/11، نسخهٔ 64 بیتی: `Free-Number-0.1.0-Windows-x64.exe`
