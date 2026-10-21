@@ -23,8 +23,8 @@ public final class MainActivity extends Activity {
  @Override public boolean shouldOverrideUrlLoading(WebView v,WebResourceRequest r){return true;}
  @Override public WebResourceResponse shouldInterceptRequest(WebView v,WebResourceRequest r){
   if(!ORIGIN.equals(r.getUrl().getScheme()+"://"+r.getUrl().getHost()))return new WebResourceResponse("text/plain","UTF-8",new ByteArrayInputStream(new byte[0]));
-  String path=r.getUrl().getPath();if(path==null||path.equals("/"))path="/index.html";if(!path.matches("/(index\\.html|app\\.js|native-api\\.js|style\\.css)"))return new WebResourceResponse("text/plain","UTF-8",new ByteArrayInputStream(new byte[0]));
-  try{return new WebResourceResponse(path.endsWith(".js")?"text/javascript":path.endsWith(".css")?"text/css":"text/html","UTF-8",getAssets().open("ui"+path));}catch(IOException e){return new WebResourceResponse("text/plain","UTF-8",new ByteArrayInputStream(new byte[0]));}
+  String path=r.getUrl().getPath();if(path==null||path.equals("/"))path="/index.html";if(!path.matches("/(index\\.html|app\\.js|native-api\\.js|style\\.css|flags/[a-z]{2}\\.svg)"))return new WebResourceResponse("text/plain","UTF-8",new ByteArrayInputStream(new byte[0]));
+  try{return new WebResourceResponse(path.endsWith(".svg")?"image/svg+xml":path.endsWith(".js")?"text/javascript":path.endsWith(".css")?"text/css":"text/html","UTF-8",getAssets().open("ui"+path));}catch(IOException e){return new WebResourceResponse("text/plain","UTF-8",new ByteArrayInputStream(new byte[0]));}
  }});web.loadUrl(ORIGIN+"/index.html");
  }
  private boolean allowed(URL u){if(!"https".equals(u.getProtocol())||u.getUserInfo()!=null||(u.getPort()!=-1&&u.getPort()!=443)||u.getRef()!=null)return false;String h=u.getHost(),p=u.getPath(),q=u.getQuery();

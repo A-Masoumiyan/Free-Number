@@ -367,7 +367,8 @@ func (a *application) serve(w http.ResponseWriter, r *http.Request) {
 		if name == "" {
 			name = "index.html"
 		}
-		if name != "index.html" && name != "app.js" && name != "style.css" && name != "native-api.js" {
+		isFlag := regexp.MustCompile(`^flags/[a-z]{2}\.svg$`).MatchString(name)
+		if name != "index.html" && name != "app.js" && name != "style.css" && name != "native-api.js" && !isFlag {
 			http.NotFound(w, r)
 			return
 		}
@@ -377,7 +378,11 @@ func (a *application) serve(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		ct := map[string]string{"index.html": "text/html; charset=utf-8", "app.js": "text/javascript; charset=utf-8", "style.css": "text/css; charset=utf-8", "native-api.js": "text/javascript; charset=utf-8"}
-		w.Header().Set("Content-Type", ct[name])
+		if isFlag {
+			w.Header().Set("Content-Type", "image/svg+xml")
+		} else {
+			w.Header().Set("Content-Type", ct[name])
+		}
 		w.Write(b)
 		return
 	}

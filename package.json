@@ -1,1 +1,1 @@
-{"name":"free-number-ui-tests","version":"0.1.0","private":true,"scripts":{"test":"node tests/ui.test.cjs"},"devDependencies":{"jsdom":"26.1.0"}}
+{"name":"free-number-ui-tests","version":"0.2.1","private":true,"scripts":{"test":"node tests/ui.test.cjs"},"devDependencies":{"jsdom":"26.1.0"}}

@@ -117,3 +117,16 @@ func TestLoopbackAuthentication(t *testing.T) {
 		}
 	}
 }
+
+func TestEmbeddedCountryFlags(t *testing.T) {
+	a := &application{host: "127.0.0.1:12345"}
+	for _, path := range []string{"/flags/gb.svg", "/flags/us.svg", "/flags/nl.svg"} {
+		r := httptest.NewRequest("GET", "http://"+a.host+path, nil)
+		r.Host = a.host
+		w := httptest.NewRecorder()
+		a.serve(w, r)
+		if w.Code != 200 || w.Header().Get("Content-Type") != "image/svg+xml" || !strings.Contains(w.Body.String(), "<svg") {
+			t.Fatalf("flag %s: %d %s", path, w.Code, w.Header().Get("Content-Type"))
+		}
+	}
+}
