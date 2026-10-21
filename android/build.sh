@@ -18,5 +18,5 @@ java -cp "$ANDROID_BUILD_TOOLS/lib/d8.jar" com.android.tools.r8.D8 --lib "$ANDRO
 cp "$build_dir/base.apk" "$build_dir/unsigned.apk"
 (cd "$build_dir/dex" && zip -q -u "$build_dir/unsigned.apk" classes.dex)
 "$ANDROID_BUILD_TOOLS/zipalign" -f -p 4 "$build_dir/unsigned.apk" "$build_dir/aligned.apk"
-java -jar "$ANDROID_BUILD_TOOLS/lib/apksigner.jar" sign --ks "$FREE_NUMBER_KEYSTORE" --ks-key-alias free-number --ks-pass env:FREE_NUMBER_STOREPASS --out "$project_dir/dist/Free-Number-0.2.1-Android.apk" "$build_dir/aligned.apk"
-java -jar "$ANDROID_BUILD_TOOLS/lib/apksigner.jar" verify --verbose "$project_dir/dist/Free-Number-0.2.1-Android.apk"
+java -jar "$ANDROID_BUILD_TOOLS/lib/apksigner.jar" sign --ks "$FREE_NUMBER_KEYSTORE" --ks-key-alias free-number --ks-pass env:FREE_NUMBER_STOREPASS --out "$project_dir/dist/Free-Number-0.3.0-Android.apk" "$build_dir/aligned.apk"
+java -jar "$ANDROID_BUILD_TOOLS/lib/apksigner.jar" verify --verbose "$project_dir/dist/Free-Number-0.3.0-Android.apk"

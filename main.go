@@ -339,6 +339,7 @@ type application struct {
 	token, host string
 	lastSeen    atomic.Int64
 	server      *http.Server
+	reports     reportStore
 }
 
 func (a *application) json(w http.ResponseWriter, v any) {
@@ -368,7 +369,7 @@ func (a *application) serve(w http.ResponseWriter, r *http.Request) {
 			name = "index.html"
 		}
 		isFlag := regexp.MustCompile(`^flags/[a-z]{2}\.svg$`).MatchString(name)
-		if name != "index.html" && name != "app.js" && name != "style.css" && name != "native-api.js" && !isFlag {
+		if name != "index.html" && name != "app.js" && name != "style.css" && name != "native-api.js" && name != "number-quality.js" && name != "vendor/phone.js" && !isFlag {
 			http.NotFound(w, r)
 			return
 		}
@@ -377,7 +378,7 @@ func (a *application) serve(w http.ResponseWriter, r *http.Request) {
 			http.NotFound(w, r)
 			return
 		}
-		ct := map[string]string{"index.html": "text/html; charset=utf-8", "app.js": "text/javascript; charset=utf-8", "style.css": "text/css; charset=utf-8", "native-api.js": "text/javascript; charset=utf-8"}
+		ct := map[string]string{"index.html": "text/html; charset=utf-8", "app.js": "text/javascript; charset=utf-8", "style.css": "text/css; charset=utf-8", "native-api.js": "text/javascript; charset=utf-8", "number-quality.js": "text/javascript; charset=utf-8", "vendor/phone.js": "text/javascript; charset=utf-8"}
 		if isFlag {
 			w.Header().Set("Content-Type", "image/svg+xml")
 		} else {
@@ -392,6 +393,10 @@ func (a *application) serve(w http.ResponseWriter, r *http.Request) {
 	}
 	a.lastSeen.Store(time.Now().Unix())
 	switch r.URL.Path {
+	case "/api/telegram-reports":
+		a.reports.handle(w, r, a, false)
+	case "/api/telegram-report":
+		a.reports.handle(w, r, a, true)
 	case "/api/ping":
 		a.json(w, map[string]bool{"ok": true})
 	case "/api/quit":
