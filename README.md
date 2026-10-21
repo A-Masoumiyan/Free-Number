@@ -21,7 +21,7 @@
 
 ## دانلود
 
-هر دو فایل نصب در پوشهٔ [free number](https://github.com/A-Masoumiyan/Free-Number/tree/main/free%20number) قرار دارند:
+فایل‌های نصب نسخهٔ ۰٫۳٫۰ در [پوشهٔ free number در Google Drive](https://drive.google.com/drive/folders/18wQgc0zJSLEv2__a_AHaLrgjEAxU2M_a) قرار دارند. پوشهٔ `free number` مخزن نیز نسخه‌های قبلی را نگه می‌دارد:
 
 - Android 8 یا جدیدتر: `Free-Number-0.3.0-Android.apk`
 - Windows 10/11، نسخهٔ 64 بیتی: `Free-Number-0.3.0-Windows-x64.exe`
